@@ -18,13 +18,11 @@ struct Edge {
 vector<int> primeFactors(long long n) {
     vector<int> factors;
 auto s = high_resolution_clock::now();
-    // Проверяем количество 2 в числе
     while (n % 2 == 0) {
         factors.push_back(2);
         n /= 2;
     }
 
-    // Проверяем остальные нечетные числа
     for (int i = 3; i * i <= n; i += 2) {
         while (n % i == 0) {
             factors.push_back(i);
@@ -32,7 +30,6 @@ auto s = high_resolution_clock::now();
         }
     }
 
-    // Если n остается и больше 2, это простое число
     if (n > 2) {
         factors.push_back(n);
     }

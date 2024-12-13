@@ -65,14 +65,7 @@ void shell() {
       }
     } else if (command == "exit") {
       exitHell();
-    } else if (command == "run") {
-      if (!args.empty()) {
-        string programAndArgs = userInput.substr(userInput.find(' ') + 1);
-        execute(programAndArgs);
-      } else {
-        cout << "run: Missing argument. Example: run <program> [arguments]" << endl;
-      }
-    } else if (command == "history") {
+    }else if (command == "history") {
 
       cout << "\nCommand History:" << endl;
       if (history.empty()) {
@@ -83,8 +76,19 @@ void shell() {
         }
       }
       cout << endl;
-    } else {
-      cout << "Invalid command!" << endl;
+    }
+    else {
+      if (command.at(0) == '.' && command.at(1) == '/') {
+        if (!args.empty()) {
+          string programAndArgs = userInput.substr(userInput.find('/') + 1);
+          execute(programAndArgs);
+        } else {
+          cout << "run: Missing argument. Example: run <program> [arguments]" << endl;
+        }
+      }
+      else {
+        cout << "Invalid command!" << endl;
+      }
     }
   }
 }
